@@ -6,14 +6,16 @@
 
 {% block contenido %}
 <div class="container">
-<h1>Inicio</h1>
+<h1>Nuevo Post</h1>
 <form action="{% url 'crear_entrada' %}" method="post">
     {% csrf_token %}
-    <h3>Título:</h3> <br>
-    <input type="text" name="titulo" id="" required> <br>
-    <h3>Subtitulo:</h3> <br>
-    <input type="text" name="subtitulo" id="" required> <br>
-    <textarea name="cuerpo" cols="100" rows="10"></textarea> <br>
+   
+    <div class="form-group">
+        <label>Cuerpo:</label>
+    {{ formulario.cuerpo | safe }}
+    {{ formulario.media}}
+
+    </div>
     <input type="submit" value="Publicar">
 </form>
 
@@ -21,3 +23,10 @@
 </div>
 
 {% endblock contenido %}
+
+
+<!--<h3>Título:</h3> <br>
+<input type="text" name="titulo" id="" required> <br>
+<h3>Subtitulo:</h3> <br>
+<input type="text" name="subtitulo" id="" required> <br>
+<textarea name="cuerpo" cols="100" rows="10"></textarea> <br>

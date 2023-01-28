@@ -6,7 +6,7 @@ class EntradaDeBlog(models.Model):
     subtitulo = models.CharField(max_length=256)
     autor = models.CharField(max_length=64)
     #fecha_entrada = models.DateField(null=True)
-    cuerpo = RichTextField()
+    cuerpo = RichTextField(blank=True, null=True)
     #imagen = models.TextField()
 
     def __str__(self):

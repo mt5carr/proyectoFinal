@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from blog.models import EntradaDeBlog
 from datetime import datetime
-from blog.forms import NuevaEntrada
+from blog.forms import FormEntrada
 #from django.db.models import Q
 
 def inicio(request):
@@ -35,7 +35,7 @@ def buscar_entrada(request):
             template_name='blog/pages.html',
             context=contexto
             )
-
+"""
 def nueva_entrada(request):
     if request.method == "POST":
         data = request.POST
@@ -52,6 +52,31 @@ def nueva_entrada(request):
             request=request,
             template_name='blog/nueva_entrada.html'
             )
+
+"""
+
+def nueva_entrada(request):
+    if request.method == "POST":
+        formulario = FormEntrada(request.POST)
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            nueva_entrada = EntradaDeBlog(
+                                    titulo=data['titulo'], 
+                                    subtitulo=data['subtitulo'], 
+                                    autor = 'Matias',
+                                    cuerpo = data['cuerpo']                                                                     
+                                    )
+            nueva_entrada.save()
+            return redirect(reverse('entradas')) 
+    else:
+        formulario = EntradaDeBlog()
+    return render(
+        request=request,
+        template_name='blog/nueva_entrada.html',
+        context={'formulario':formulario }
+    )
+
+
 
 def ver_entrada(request, id):
     entrada = EntradaDeBlog.objects.get(id=id)

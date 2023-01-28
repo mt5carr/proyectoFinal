@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
         rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" 
         crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" 
         crossorigin="anonymous"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/35.3.1/classic/ckeditor.js"></script><!--para ckeditor-->
@@ -25,8 +25,7 @@
     <nav class="navbar bg-dark" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'inicio' %}">Home</a>
-            <a class="navbar-brand" href="{% url 'entradas' %}">Entradas</a>
-            <a class="navbar-brand" href="{% url 'crear_entrada' %}">Nueva Entrada</a>
+            <a class="navbar-brand" href="{% url 'entradas' %}">Entradas</a>           
             <a class="navbar-brand" href="{% url 'sobre_mi' %}">Sobre mi</a>
             <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,7 +37,7 @@
                   <li><a class="dropdown-item" href="#">Crear Usuario</a></li>
 
                   <li><a class="dropdown-item" href="#">Perfil</a></li>
-                  <li><a class="dropdown-item" href="#">Nueva Entrada</a></li>
+                  <li><a class="dropdown-item" href="{% url 'crear_entrada' %}">Nueva Entrada</a></li>
                   <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
                 </ul>
             </div>

@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><a href="{% url 'ver_entrada' entrada.id %}">{{ entrada.titulo }}</a></h5>
                     <p class="card-text">{{ entrada.subtitulo }}</p>
-                    <small><p class="card-text" >{{ entrada.cuerpo | slice:"0:150" }}...</p></small>
+                    <small><p class="card-text" >{{ entrada.cuerpo | slice:"0:150" | safe }}...</p></small>
                     <small><a href="{% url 'ver_entrada' entrada.id %}">seguir leyendo...</a></small>
                     <p class="card-text"><small class="text-muted">{{ entrada.autor }}</small></p>
                     
