@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+
+{% block subtitulo %}
+    {{entrada.titulo}}
+{% endblock subtitulo %}
+
+{% block contenido %}
+<a href="{% url 'entradas' %}">volver a listado</a>
+<br>
+<br>
+
+
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{entrada.titulo}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{entrada.subtitulo}}</h6><br>  
+      <p class="card-text">{{entrada.cuerpo}}</p>
+      <small>Escrito por: {{entrada.autor}}</small> <br>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
+      
+    </div>
+</div>
+  
+
+
+{% endblock contenido %}
