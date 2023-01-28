@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from blog.models import EntradaDeBlog
 from datetime import datetime
+from blog.forms import NuevaEntrada
 #from django.db.models import Q
 
 def inicio(request):

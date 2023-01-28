@@ -17,4 +17,5 @@ de datos que almacena tanto las Tareas cargados como los Proyectos y Clientes
 ## Dependencias
 + Django==4.1.5
 + Pillow==9.4.0
++ django-ckeditor==6.5.1
 
