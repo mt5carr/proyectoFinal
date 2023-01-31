@@ -1,17 +1,14 @@
 {% extends "blog/base.html" %}
 
 {% block subtitulo %}
-    Nueva Entrada
+    Editar Entrada
 {% endblock subtitulo %}
 
 {% block contenido %}
 <div class="container">
-    <h1>Nuevo Post</h1>
-{% if is_update %}
+    <h1>Editar Post</h1>
     <form action="{% url 'editar_entrada' entrada.id %}" method="post">
-{% else %}
-    <form action="{% url 'crear_entrada' %}" method="post">
-{% endif %}
+
         {% csrf_token %}   
         <div class="form-outline">
             {{ formulario.as_p }}
@@ -19,7 +16,7 @@
 
         </div>
         {{ formulario.media}}
-        <input type="submit" value="Publicar">
+        <input type="submit" value="Actualizar">
     </form>
 
 

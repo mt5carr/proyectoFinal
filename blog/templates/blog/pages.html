@@ -24,26 +24,35 @@
 
 <div class="container">
 
-    {% for entrada in entradas %}
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'ver_entrada' entrada.id %}">{{ entrada.titulo }}</a></h5>
-                    <p class="card-text">{{ entrada.subtitulo }}</p>
-                    <small><p class="card-text" >{{ entrada.cuerpo | slice:"0:150" | safe }}...</p></small>
-                    <small><a href="{% url 'ver_entrada' entrada.id %}">seguir leyendo...</a></small>
-                    <p class="card-text"><small class="text-muted">{{ entrada.autor }}</small></p>
-                    
+        {% for entrada in entradas %}
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                <img src="..." class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'ver_entrada' entrada.id %}">{{ entrada.titulo }}</a></h5>
+                        <p class="card-text">{{ entrada.subtitulo }}</p>
+                        <small><p class="card-text" >{{ entrada.cuerpo | slice:"0:150" | safe }}...</p></small>
+                        <small><a href="{% url 'ver_entrada' entrada.id %}">seguir leyendo...</a></small>
+                        <p class="card-text"><small class="text-muted">{{ entrada.autor }}</small></p>
+                        
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
+            </div>
+        {% endfor %}     
+        
+        
+    {{entradas}}
 
-    {% endfor %}        
+    {% if entradas|length == 0 %}
+    <h1> nada por aqui... </h1>
+    <h3> No hay Post aún </h3> 
 
+    {% else %}
+    {% endif %}
+    
 </div>
 {% endblock contenido %}

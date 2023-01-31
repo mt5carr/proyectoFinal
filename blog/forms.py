@@ -1,10 +1,19 @@
 from django import forms
-from ckeditor.fields import RichTextField
+#from ckeditor.fields import RichTextField
+from django.forms import ModelForm
+from ckeditor.widgets import CKEditorWidget
+from blog.models import EntradaDeBlog, Post
 
-class FormEntrada(forms.Form):
-    titulo = forms.CharField(max_length=128)
-    subtitulo = forms.CharField(max_length=256)
-    autor = forms.CharField(max_length=64)
-    #fecha_entrada = forms.DateField(null=True)
-    cuerpo = forms.CharField()
-    #imagen = forms.TextField() 
+class FormEntrada(ModelForm):
+    class Meta:
+        model = EntradaDeBlog
+        fields = ['titulo','subtitulo', 'autor', 'cuerpo']
+
+
+
+
+#borrame ------------------------------------------------------------
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title','body']
