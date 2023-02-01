@@ -8,6 +8,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect ###
 from.models import Post ###
 from.forms import PostForm ###
+from django.contrib.auth.decorators import login_required
+
+
+
 #from django.db.models import Q
 
 def inicio(request):
@@ -40,7 +44,7 @@ def buscar_entrada(request):
             context=contexto
             )
 
-
+@login_required
 def nueva_entrada(request):    
     if request.method == "POST":
         formulario = FormEntrada(request.POST)
@@ -56,7 +60,7 @@ def nueva_entrada(request):
     )
 
 
-
+@login_required
 def editar_entrada(request, id):    
     entrada = EntradaDeBlog.objects.get(id=id)
     if request.method == "POST":
@@ -84,7 +88,7 @@ def editar_entrada(request, id):
         context={'formulario':formulario, 'entrada' : entrada, 'is_update' : True}
     )
 
-
+@login_required
 def eliminar_entrada(request, id):
     entrada = EntradaDeBlog.objects.get(id=id)
     if request.method == "POST":

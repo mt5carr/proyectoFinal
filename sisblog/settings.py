@@ -155,3 +155,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+LOGIN_URL = 'login' #esta línea establece que la vista login es el formulario para login
