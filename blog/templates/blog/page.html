@@ -9,7 +9,7 @@
 <br><br>
 <a class="btn btn-primary" href="{% url 'editar_entrada' entrada.id %}">Editar Entrada</a>
 
-<form action="{% url 'eliminar_entrada' entrada.id %}" method="post">
+<form action="{% url 'eliminar_entrada' entrada.id %}" method="GET">
   {% csrf_token %}  
   <input type="submit" class="btn btn-danger" value="Eliminar entrada">
 </form>

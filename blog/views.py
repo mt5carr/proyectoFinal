@@ -4,17 +4,11 @@ from django.http import HttpResponse
 from blog.models import EntradaDeBlog
 from datetime import datetime
 from blog.forms import FormEntrada
-
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect ###
 from.models import Post ###
 from.forms import PostForm ###
 #from django.db.models import Q
-
-
-
-
-
-
 
 def inicio(request):
     return render(
@@ -25,7 +19,7 @@ def inicio(request):
 def entradas(request):
     entradas = EntradaDeBlog.objects.all()
     contexto = {
-        'entradas': reversed(entradas)
+        'entradas_ordenadas': reversed(entradas), 'entradas': entradas
     }
     return render(
         request=request, 
@@ -96,7 +90,12 @@ def eliminar_entrada(request, id):
     if request.method == "POST":
         entrada.delete()
         return redirect(reverse('entradas')) 
-
+    return render(
+    request=request,
+    template_name='blog/confirmar_eliminar.html',
+    context={'entrada' : entrada}
+    )
+    
 
 
 

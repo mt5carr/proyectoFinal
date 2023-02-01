@@ -1,0 +1,20 @@
+{% extends "login/base.html" %}
+
+{% block subtitulo %}
+    Iniciar Sesión
+{% endblock subtitulo %}
+
+{% block contenido %}
+
+<form action="{% url 'registro' %}" method="post">
+    {% csrf_token %}     
+  <div class="form-outline">
+    {{ formulario.as_p }}
+  <br>
+
+  <input type="submit" class="btn btn-primary" value="Registrarse">
+</form>
+
+
+
+{% endblock contenido %}

@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+
+{% block subtitulo %}
+    Eliminación de Post
+{% endblock subtitulo %}
+
+{% block contenido %}
+<div class="container">
+    <h1>Estas eliminando el Post: {{entrada.titulo}} </h1>
+    <form action="{% url 'eliminar_entrada' entrada.id %}" method="POST">
+        {% csrf_token %}   
+        <div class="form-outline">
+            {{ formulario.as_p }}
+        <br>
+        </div>
+        {{ formulario.media}}
+        <a href="{% url 'entradas' %}" class="btn btn-secondary">Cancelar</a>
+        <input type="submit" class="btn btn-danger" value="Eliminar">
+    </form>
+
+
+</div>
+
+{% endblock contenido %}

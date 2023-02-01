@@ -23,8 +23,13 @@
 <br>
 
 <div class="container">
-
-        {% for entrada in entradas %}
+ 
+    {% if entradas|length_is:"0" %}
+    <h1> nada por aqui... </h1>
+    <h3> No hay Post aún </h3> 
+    
+    {% else %}
+        {% for entrada in entradas_ordenadas %}
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -43,16 +48,7 @@
             </div>
             </div>
         {% endfor %}     
-        
-        
-    {{entradas}}
-
-    {% if entradas|length == 0 %}
-    <h1> nada por aqui... </h1>
-    <h3> No hay Post aún </h3> 
-
-    {% else %}
     {% endif %}
-    
+
 </div>
 {% endblock contenido %}
