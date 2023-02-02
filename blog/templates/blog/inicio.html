@@ -7,7 +7,7 @@
 {% block contenido %}
 <div class="container">
 <h1>Inicio</h1>
-
+<img src="{{ user.avatar.imagen.url }}" width="200" >
 <p>Bienvenido/a <b>{{ request.user.first_name }}</b>, este es proyecto final del curso de Python de CODERHOUSE. <br>
 Este sistema web se armó mediante el Frameworks <b> Django</b>. <br>
 El código se compone de los templates que hacen a las páginas que se accederán en la navegación y <br>

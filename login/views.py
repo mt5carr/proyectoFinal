@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
-from login.forms import UserRegisterForm
+from login.forms import UserRegisterForm, UserUpdateForm, AvatarFormulario
+from login.models import Avatar
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
+from django.views.generic import UpdateView
 from django.contrib.auth import login, authenticate
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 def register(request):
@@ -48,3 +51,29 @@ def login_view(request):
 class CustomLogoutView(LogoutView):
     template_name = 'login/logout.html'
     next_page = reverse_lazy('inicio')
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model= User
+    form_class = UserUpdateForm
+    success_url= reverse_lazy('inicio')
+    template_name= 'login/formulario_perfil.html'
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+def agregar_avatar(request):
+    if request.method == "POST":
+        formulario = AvatarFormulario(request.POST, request.FILES)
+
+        if formulario.is_valid():
+            avatar = formulario.save()
+            avatar.user = request.user
+            avatar.save()
+            return redirect(reverse('inicio'))
+    else:
+        formulario = AvatarFormulario()
+    return render(
+        request=request,
+        template_name='login/formulario_avatar.html',
+        context={'formulario': formulario}
+    )

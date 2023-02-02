@@ -5,7 +5,8 @@
 {% endblock subtitulo %}
 
 {% block contenido %}
-
+<h3>Nuevo Usuario</h3>
+<br>
 <form action="{% url 'registro' %}" method="post">
     {% csrf_token %}     
   <div class="form-outline">

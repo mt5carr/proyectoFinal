@@ -152,8 +152,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Configuraciones de ckeditor
-
-
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 LOGIN_URL = 'login' #esta línea establece que la vista login es el formulario para login

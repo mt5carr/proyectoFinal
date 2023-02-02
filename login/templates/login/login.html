@@ -6,6 +6,7 @@
 
 {% block contenido %}
 
+<h3>Inicio de Sesión</h3>
 <form method="post">
     {% csrf_token %}     
   <div class="form-outline">
@@ -15,7 +16,7 @@
   <input type="submit" class="btn btn-primary" value="Iniciar Sesión">
 </form>
 <br>
-<small><a href="{% url 'registro' %}">¿No tienen cuenta?</a></small>
+<small><a href="{% url 'registro' %}">Registrarse</a></small>
 
 
 {% endblock contenido %}

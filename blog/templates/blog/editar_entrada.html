@@ -16,7 +16,8 @@
 
         </div>
         {{ formulario.media}}
-        <input type="submit" value="Actualizar">
+        <a href="{% url 'ver_entrada' entrada.id %}" class="btn btn-secondary">Cancelar</a>
+        <input type="submit" class="btn btn-primary" value="Actualizar">
     </form>
 
 

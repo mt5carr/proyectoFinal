@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %}
+
+{% block subtitulo %}
+    Edición de Perfil
+{% endblock subtitulo %}
+
+{% block contenido %}
+
+<h3>Editar Perfil</h3>
+<form method="post">
+    {% csrf_token %}     
+  <div class="form-outline">
+    {{ form.as_p }}
+  <br>
+  <a href="{% url 'inicio' %}" class="btn btn-secondary">Cancelar</a>
+  <input type="submit" class="btn btn-primary" value="Actualizar">
+</form>
+<br>
+
+
+  
+{% endblock contenido %}
