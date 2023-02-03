@@ -6,6 +6,8 @@
 
 {% block contenido %}
 <div class="container">
+
+{% if entrada.user_id == user.id %}
     <h1>Editar Post</h1>
     <form action="{% url 'editar_entrada' entrada.id %}" method="post">
 
@@ -19,8 +21,11 @@
         <a href="{% url 'ver_entrada' entrada.id %}" class="btn btn-secondary">Cancelar</a>
         <input type="submit" class="btn btn-primary" value="Actualizar">
     </form>
+{% else %}
+    <h1>Este Post no es de tu autoría, no es posible editarlo.</h1> <br> <br>
+    <a href="{% url 'ver_entrada' entrada.id %}" class="btn btn-secondary">Volver</a>
 
-
+{% endif %} 
 </div>
 
 {% endblock contenido %}

@@ -6,9 +6,10 @@ from datetime import datetime
 from blog.forms import FormEntrada
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect ###
-from.models import Post ###
-from.forms import PostForm ###
+#from.models import Post ###
+#from.forms import PostForm ###
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 
@@ -47,9 +48,12 @@ def buscar_entrada(request):
 @login_required
 def nueva_entrada(request):    
     if request.method == "POST":
-        formulario = FormEntrada(request.POST)
+        formulario = FormEntrada(request.POST, request.FILES)
         if formulario.is_valid():
-            formulario.save()
+            blog = formulario.save()
+            blog.user = request.user
+            #blog.id = request.id
+            blog.save()
         return redirect(reverse('entradas')) 
     else:
         formulario = FormEntrada()
@@ -64,15 +68,16 @@ def nueva_entrada(request):
 def editar_entrada(request, id):    
     entrada = EntradaDeBlog.objects.get(id=id)
     if request.method == "POST":
-        formulario = FormEntrada(request.POST)
+        formulario = FormEntrada(request.POST, request.FILES)
 
         if formulario.is_valid():            
             data = formulario.cleaned_data
             entrada.titulo = data['titulo']
             entrada.subtitulo = data['subtitulo']
             entrada.autor = data['autor']
-            entrada.cuerpo = data['cuerpo']        
+            entrada.cuerpo = data['cuerpo']           
             entrada.save()
+            messages.success(request, 'Entrada editada con éxito')
             return redirect(reverse('entradas')) 
     else:
         inicial = {
@@ -80,6 +85,7 @@ def editar_entrada(request, id):
             'subtitulo' : entrada.subtitulo, 
             'autor' : entrada.autor, 
             'cuerpo' : entrada.cuerpo, 
+            'imagen' : entrada.imagen, 
         }
         formulario = FormEntrada(initial=inicial)
     return render(
@@ -93,6 +99,7 @@ def eliminar_entrada(request, id):
     entrada = EntradaDeBlog.objects.get(id=id)
     if request.method == "POST":
         entrada.delete()
+        messages.info(request, 'Entrada eliminada de la base de datos')
         return redirect(reverse('entradas')) 
     return render(
     request=request,
@@ -100,34 +107,6 @@ def eliminar_entrada(request, id):
     context={'entrada' : entrada}
     )
     
-
-
-
-
-
-
-
-
-
-#borrame ------------------------------------------------------------
-def index(request):
-
-    form = None
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/thanks/')
-    else:
-
-        form = PostForm()
-    return render(request, template_name='blog/index.html',context={'form':form})
-
-
-
-
-
-
 def ver_entrada(request, id):
     entrada = EntradaDeBlog.objects.get(id=id)
     contexto = {
@@ -140,16 +119,10 @@ def ver_entrada(request, id):
         )
 
 
-
-
-
-
 def about(request):
     return render(
         request=request, 
         template_name='blog/about.html'
         )
     
-
-
 

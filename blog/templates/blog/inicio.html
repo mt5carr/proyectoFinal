@@ -5,6 +5,17 @@
 {% endblock subtitulo %}
 
 {% block contenido %}
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+            <p  {% if message.tags %} class=" alert alert-{{ message.tags }} " {% endif %}> {{ message }} <p>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+
 <div class="container">
 <h1>Inicio</h1>
 <img src="{{ user.avatar.imagen.url }}" width="200" >

@@ -8,6 +8,7 @@ from django.views.generic import UpdateView
 from django.contrib.auth import login, authenticate
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 # Create your views here.
 def register(request):
@@ -16,9 +17,10 @@ def register(request):
 
         if formulario.is_valid():
             formulario.save()
+            messages.success(request, 'Nuevo usuario creado con éxito')
             return redirect(reverse('inicio'))
     else:
-        formulario = UserRegisterForm()
+        formulario = UserRegisterForm()        
     return render(
         request= request,
         template_name= 'login/registro.html',

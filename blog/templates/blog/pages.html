@@ -5,6 +5,16 @@
 {% endblock subtitulo %}
 
 {% block contenido %}
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+            <p  {% if message.tags %} class=" alert alert-{{ message.tags }} " {% endif %}> {{ message }} <p>
+    {% endfor %}
+</div>
+{% endif %}
+
+
 <div class="container">
     <h1>Articulos Recientes</h1>
 </div>
@@ -33,7 +43,7 @@
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
+                <img src="{{ entrada.imagen }}" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

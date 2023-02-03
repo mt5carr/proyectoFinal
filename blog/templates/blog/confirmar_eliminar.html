@@ -5,8 +5,10 @@
 {% endblock subtitulo %}
 
 {% block contenido %}
+
 <div class="container">
-    <h1>Estas eliminando el Post: {{entrada.titulo}} </h1>
+{% if entrada.user_id == user.id %}
+<h1>Estas eliminando el Post: {{entrada.titulo}} </h1>
     <form action="{% url 'eliminar_entrada' entrada.id %}" method="POST">
         {% csrf_token %}   
         <div class="form-outline">
@@ -17,6 +19,13 @@
         <a href="{% url 'ver_entrada' entrada.id %}" class="btn btn-secondary">Cancelar</a>
         <input type="submit" class="btn btn-danger" value="Eliminar">
     </form>
+{% else %}
+    <h1>Este Post no es de tu autoría, no es posible borrarlo.</h1> <br> <br>
+    <a href="{% url 'ver_entrada' entrada.id %}" class="btn btn-secondary">Volver</a>
+{% endif %}
+
+
+
 
 
 </div>

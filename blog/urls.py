@@ -7,8 +7,7 @@ from blog.views import  (
     editar_entrada, 
     eliminar_entrada, 
     ver_entrada, 
-    about, 
-    index
+    about    
     )
 
 urlpatterns = [
@@ -21,7 +20,5 @@ urlpatterns = [
     path("pages/<int:id>/", ver_entrada, name="ver_entrada"),
     path("eliminar-entrada/<int:id>/", eliminar_entrada, name="eliminar_entrada"),
     path("about/", about, name="sobre_mi"),
-    path("index/", index, name="index"),
-
     
 ]
