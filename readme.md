@@ -5,6 +5,9 @@
 + El sistema se plantea dos apps, una llamada "blog" y otra "login". Cuenta con una base
 de datos que almacena tanto los blog como los usuarios.
 
+## Link de presentación
+https://www.loom.com/share/377e668d79e841a7a4c3bec64b77fb8e
+
 ## Instrucciones instalar proyecto en local
 + Crea una carpeta contenedora madre
 + Abre la consola y ubicate en la carpeta madre
@@ -17,4 +20,5 @@ de datos que almacena tanto los blog como los usuarios.
 + Django==4.1.5
 + Pillow==9.4.0
 + django-ckeditor==6.5.1
+
 
