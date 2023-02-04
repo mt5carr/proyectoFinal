@@ -7,9 +7,8 @@ class EntradaDeBlog(models.Model):
     subtitulo = models.CharField(max_length=256)
     autor = models.CharField(max_length=64)    
     cuerpo = RichTextUploadingField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    imagen = models.ImageField(upload_to='blog', null=True, blank=True)
-    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
     def __str__(self):
         return self.titulo
 

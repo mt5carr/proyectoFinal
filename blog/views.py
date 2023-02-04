@@ -1,19 +1,9 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.http import HttpResponse
 from blog.models import EntradaDeBlog
-from datetime import datetime
 from blog.forms import FormEntrada
-from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponseRedirect ###
-#from.models import Post ###
-#from.forms import PostForm ###
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
-
-
-#from django.db.models import Q
 
 def inicio(request):
     return render(
@@ -35,9 +25,9 @@ def entradas(request):
 def buscar_entrada(request):
     if request.method == "POST":
         data = request.POST
-        entrada_buscada = EntradaDeBlog.objects.filter(entrada__contains=data['entrada'])       
+        entrada_buscada = EntradaDeBlog.objects.filter(titulo__contains=data['entrada'])       
         contexto = {
-            'entrada': entrada_buscada
+            'entradas_ordenadas': entrada_buscada
             }
         return render(
             request=request, 
@@ -48,12 +38,12 @@ def buscar_entrada(request):
 @login_required
 def nueva_entrada(request):    
     if request.method == "POST":
-        formulario = FormEntrada(request.POST, request.FILES)
+        formulario = FormEntrada(request.POST)
         if formulario.is_valid():
             blog = formulario.save()
             blog.user = request.user
-            #blog.id = request.id
             blog.save()
+            messages.success(request, 'Entrada subido con éxito')
         return redirect(reverse('entradas')) 
     else:
         formulario = FormEntrada()
@@ -63,12 +53,11 @@ def nueva_entrada(request):
         context={'formulario':formulario }
     )
 
-
 @login_required
 def editar_entrada(request, id):    
     entrada = EntradaDeBlog.objects.get(id=id)
     if request.method == "POST":
-        formulario = FormEntrada(request.POST, request.FILES)
+        formulario = FormEntrada(request.POST)
 
         if formulario.is_valid():            
             data = formulario.cleaned_data
@@ -84,8 +73,7 @@ def editar_entrada(request, id):
             'titulo' : entrada.titulo, 
             'subtitulo' : entrada.subtitulo, 
             'autor' : entrada.autor, 
-            'cuerpo' : entrada.cuerpo, 
-            'imagen' : entrada.imagen, 
+            'cuerpo' : entrada.cuerpo,  
         }
         formulario = FormEntrada(initial=inicial)
     return render(
@@ -117,7 +105,6 @@ def ver_entrada(request, id):
         template_name='blog/page.html',
         context= contexto
         )
-
 
 def about(request):
     return render(

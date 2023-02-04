@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from login.forms import UserRegisterForm, UserUpdateForm, AvatarFormulario
-from login.models import Avatar
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LogoutView
@@ -53,6 +52,7 @@ def login_view(request):
 class CustomLogoutView(LogoutView):
     template_name = 'login/logout.html'
     next_page = reverse_lazy('inicio')
+
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model= User

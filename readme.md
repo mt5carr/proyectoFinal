@@ -1,10 +1,9 @@
 # ProyectoCoder Python Matias Carrizo
 
 ## Presentación
-+ Este es un sistema web que busca administrar una base de datos
-de Tareas, Proyectos y Clientes.
-+ El sistema se plantea con una app llamada "Tareas" y una base
-de datos que almacena tanto las Tareas cargados como los Proyectos y Clientes
++ Este es un sistema web del tipo blog como proyecto final del curso de Python
++ El sistema se plantea dos apps, una llamada "blog" y otra "login". Cuenta con una base
+de datos que almacena tanto los blog como los usuarios.
 
 ## Instrucciones instalar proyecto en local
 + Crea una carpeta contenedora madre

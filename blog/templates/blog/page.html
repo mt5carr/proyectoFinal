@@ -5,15 +5,14 @@
 {% endblock subtitulo %}
 
 {% block contenido %}
-<a href="{% url 'entradas' %}">volver a listado</a>
-<br><br>
-<a class="btn btn-primary" href="{% url 'editar_entrada' entrada.id %}">Editar Entrada</a>
-
 <form action="{% url 'eliminar_entrada' entrada.id %}" method="GET">
   {% csrf_token %}  
+  <a href="{% url 'entradas' %}" class="btn btn-secondary">volver a listado</a>
+  <a class="btn btn-primary" href="{% url 'editar_entrada' entrada.id %}">Editar Entrada</a>   
   <input type="submit" class="btn btn-danger" value="Eliminar entrada">
 </form>
-<p></p><br>
+
+<hr>  
 
 <div class="card" style="width: 50rem;">
   
